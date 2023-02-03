@@ -1,0 +1,5 @@
+FROM redis
+
+MAINTAINER Robson Silva
+
+EXPOSE 6379

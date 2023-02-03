@@ -51,6 +51,11 @@ ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 ```bash
 cd /home/ubuntu
-git clone https://github.com/jonathanbaraldi/devops
-cd devops/app
+git clone https://github.com/robsantossilva/devops-ninja-docker-kubernetes-rancher
+cd devops-ninja-docker-kubernetes-rancher/app
+```
+
+```bash
+cd redis
+docker build -t robsantossilva/redis:devops .
 ```
