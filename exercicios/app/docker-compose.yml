@@ -2,20 +2,20 @@
 version: '2'
 
 services:
-    
+
     nginx:
         restart: "always"
-        image: salimfpf/nginx:devops
+        image: robsantossilva/nginx:devops
         ports:
             - "80:80"
         links:
             # Colocar mais nós para escalar
             - node
             # - node-2
-            
+
     redis:
         restart: "always"
-        image: salimfpf/redis:devops
+        image: robsantossilva/redis:devops
         ports:
             - 6379
 
@@ -28,25 +28,24 @@ services:
             MYSQL_ROOT_PASSWORD: 123
             MYSQL_DATABASE: books
             MYSQL_USER: apitreinamento
-            MYSQL_PASSWORD: 123 
-    
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            MYSQL_PASSWORD: 123
+
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     node:
         restart: "always"
-        image: salimfpf/node:devops
+        image: robsantossilva/node:devops
         links:
             - redis
             - mysql
         ports:
             - 8080
         volumes:
-            -  volumeteste:/tmp/volumeteste
-    
+            - volumeteste:/tmp/volumeteste
+
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 # Mapeamento dos volumes
 volumes:
     volumeteste:
         external: false
-

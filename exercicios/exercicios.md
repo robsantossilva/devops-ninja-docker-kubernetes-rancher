@@ -38,7 +38,7 @@ $ usermod -aG docker ubuntu
 
 Nesse exercício iremos construir as imagens dos containers que iremos usar, colocar elas para rodar em conjunto com o docker-compose. 
 
-Sempre que aparecer <dockerhub-user>, você precisa substituir pelo seu usuário no DockerHub.
+Sempre que aparecer robsantossilva, você precisa substituir pelo seu usuário no DockerHub.
 
 Entrar no host A, e instalar os pacotes abaixo, que incluem Git, Python, Pip e o Docker-compose.
 ```sh
@@ -61,8 +61,8 @@ $ cd devops/exercicios/app
 Iremos fazer o build da imagem do Redis para a nossa aplicação.
 ```sh
 $ cd redis
-$ docker build -t <dockerhub-user>/redis:devops .
-$ docker run -d --name redis -p 6379:6379 <dockerhub-user>/redis:devops
+$ docker build -t robsantossilva/redis:devops .
+$ docker run -d --name redis -p 6379:6379 robsantossilva/redis:devops
 $ docker ps
 $ docker logs redis
 ```
@@ -74,11 +74,11 @@ Com isso temos o container do Redis rodando na porta 6379.
 Iremos fazer o build do container do NodeJs, que contém a nossa aplicação.
 ```sh
 $ cd ../node
-$ docker build -t <dockerhub-user>/node:devops .
+$ docker build -t robsantossilva/node:devops .
 ```
 Agora iremos rodar a imagem do node, fazendo a ligação dela com o container do Redis.
 ```sh
-$ docker run -d --name node -p 8080:8080 --link redis <dockerhub-user>/node:devops
+$ docker run -d --name node -p 8080:8080 --link redis robsantossilva/node:devops
 $ docker ps 
 $ docker logs node
 ```
@@ -90,11 +90,11 @@ Com isso temos nossa aplicação rodando, e conectada no Redis. A api para verif
 Iremos fazer o build do container do nginx, que será nosso balanceador de carga.
 ```sh
 $ cd ../nginx
-$ docker build -t <dockerhub-user>/nginx:devops .
+$ docker build -t robsantossilva/nginx:devops .
 ```
 Criando o container do nginx a partir da imagem e fazendo a ligação com o container do Node
 ```sh
-$ docker run -d --name nginx -p 80:80 --link node <dockerhub-user>/nginx:devops
+$ docker run -d --name nginx -p 80:80 --link node robsantossilva/nginx:devops
 $ docker ps
 ```
 Podemos acessar então nossa aplicação nas portas 80 e 8080 no ip da nossa instância.
@@ -112,9 +112,9 @@ Para rodar nosso docker-compose, precisamos remover todos os containers que est�
 
 É preciso editar o arquivo docker-compose.yml, onde estão os nomes das imagens e colocar o seu nome de usuário.
 
-- Linha 8 = <dockerhub-user>/nginx:devops
-- Linha 18 = image: <dockerhub-user>/redis:devops
-- Linha 37 = image: <dockerhub-user>/node:devops
+- Linha 8 = robsantossilva/nginx:devops
+- Linha 18 = image: robsantossilva/redis:devops
+- Linha 37 = image: robsantossilva/node:devops
 
 Após alterar e colocar o nome correto das imagens, rodar o comando de up -d para subir a stack toda.
 
