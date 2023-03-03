@@ -187,7 +187,7 @@ Adicionar o host B e host C.
 
 Pegar o seu comando no seu rancher.
 ```sh
-$ docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kubernetes:/etc/kubernetes -v /var/run:/var/run rancher/rancher-agent:v2.4.3 --server https://rancher.dev-ops-ninja.com --token 8xf5r2ttrvvqcxdhwsbx9cvb7s9wgwdmgfbmzr4mt7smjbg4jgj292 --ca-checksum 61ac25d1c389b26c5c9acd98a1c167dbfb394c6c1c3019d855901704d8bae282 --node-name k8s-1 --etcd --controlplane --worker
+$ sudo docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kubernetes:/etc/kubernetes -v /var/run:/var/run rancher/rancher-agent:v2.4.3 --server https://rancher.robsondev.com --token 6brvz4bqh6vwpbqpgtjlxx4grrjjtmjhsqw5d6dc7h5df2c77tghcv --ca-checksum e19ed7d5fe47ab682a549691cbc88b5600cb18ed5b25052f1b616197081e53e9 --node-name k8s-1 --etcd --controlplane --worker
 ```
 Será um cluster com 3 nós.
 Navegar pelo Rancher e ver os painéis e funcionalidades.
@@ -218,6 +218,7 @@ $ sudo apt-get install -y kubectl
 ```
 
 Com o kubectl instalado, pegar as credenciais de acesso no Rancher e configurar o kubectl.
+Pegar [Kubeconfig File] dentro do Rancher
 
 ```sh
 $ mkdir ~/.kube
@@ -236,6 +237,9 @@ $ kubectl get nodes
 # Aula 9 - DNS
 
 ### Traefik - DNS
+https://traefik.io/
+
+![traefik](./docs/../../docs/traefik.png)
 
 *.rancher.dev-ops-ninja.com
 
@@ -245,6 +249,12 @@ O Traefik é a aplicação que iremos usar como ingress. Ele irá ficar escutand
 $ kubectl apply -f https://raw.githubusercontent.com/containous/traefik/v1.7/examples/k8s/traefik-rbac.yaml
 $ kubectl apply -f https://raw.githubusercontent.com/containous/traefik/v1.7/examples/k8s/traefik-ds.yaml
 $ kubectl --namespace=kube-system get pods
+
+#Um POD para cada Node do cluster
+NAME                                  READY   STATUS      RESTARTS   AGE
+traefik-ingress-controller-7wpkz      1/1     Running     0          39s
+traefik-ingress-controller-s42xv      1/1     Running     0          38s
+traefik-ingress-controller-xng4j      1/1     Running     0          38s
 ```
 Agora iremos configurar o DNS pelo qual o Traefik irá responder. No arquivo ui.yml, localizar a url, e fazer a alteração. Após a alteração feita, iremos rodar o comando abaixo para aplicar o deployment no cluster.
 ```sh
