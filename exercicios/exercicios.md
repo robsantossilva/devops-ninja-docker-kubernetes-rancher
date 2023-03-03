@@ -259,7 +259,7 @@ traefik-ingress-controller-xng4j      1/1     Running     0          38s
 Agora iremos configurar o DNS pelo qual o Traefik irá responder. No arquivo ui.yml, localizar a url, e fazer a alteração. Após a alteração feita, iremos rodar o comando abaixo para aplicar o deployment no cluster.
 ```sh
 $ cd treinamento-kubernetes/exercicios/
-$ kubectl apply -f ui.yml
+$ kubectl apply -f https://raw.githubusercontent.com/robsantossilva/devops-ninja-docker-kubernetes-rancher/master/exercicios/ui.yml
 ```
 
 
