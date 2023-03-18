@@ -54,8 +54,6 @@ spec:
 
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: changeme
-        - name: MYSQL_ROOT_PASSWORD
           value: "rancher"
 
         ports:
