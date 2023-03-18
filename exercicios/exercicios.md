@@ -272,13 +272,19 @@ $ kubectl apply -f https://raw.githubusercontent.com/robsantossilva/devops-ninja
 
 ### Volumes
 
+O Longhorn é um sistema de armazenamento em bloco distribuído leve, confiável e fácil de usar para Kubernetes.
+- Version 0.8.1
+  
+![](./../docs/longhorn-system.png)
+![](./../docs/longhorn-system-deployment.png)
+
 Para fazermos os exercícios do volume, iremos fazer o deployment do pod com o volume, que estará apontando para um caminho no host.
 
 Fazer o deployment do Longhorn.
 
 
 ```sh
-$ kubectl apply -f mariadb-longhorn-volume.yml
+$ kubectl apply -f https://github.com/robsantossilva/devops-ninja-docker-kubernetes-rancher/blob/master/exercicios/mariadb-longhorn-volume.yml
 ```
 
 
